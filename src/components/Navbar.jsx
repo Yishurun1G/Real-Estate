@@ -1,8 +1,18 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { assets } from '../assets/assets'
 
 const Navbar = () => {
 const [showMobileMenu,setMobileMenu] = useState(false)
+useEffect(()=>{
+if(showMobileMenu){
+     document.body.style.overflow = 'hidden'
+
+}else{
+
+   document.body.style.overflow = 'auto'
+}
+},[showMobileMenu])
+
 
 
   return (
@@ -28,8 +38,8 @@ const [showMobileMenu,setMobileMenu] = useState(false)
       <div className={`md:hidden ${showMobileMenu ? 'fixed w-full' : 'h-0 w-0'}  right-0 top-0 bottom-0 
       overflow-hidden bg-white transition-all`} >
 
-<div className='flex justify-end cursor-pointer'>
-  <img src={assets.cross_icon}  className='w-6' alt="" />
+<div className='flex justify-end p-6 cursor-pointer'>
+  <img onClick={()=> setMobileMenu(false)} src={assets.cross_icon}  className='w-6' alt="" />
 </div>
 
         <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg'>
